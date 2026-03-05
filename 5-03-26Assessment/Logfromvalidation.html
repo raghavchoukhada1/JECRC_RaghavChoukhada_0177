@@ -1,0 +1,32 @@
+<input id="email" placeholder="Enter Email">
+<button onclick="validateForm()">Submit</button>
+
+<script>
+function validateForm(){
+
+    const email = document.getElementById("email").value;
+
+    if(!email.includes("@")){
+
+        // Log warning in console
+        console.warn("WARN: Invalid Email Entered", email);
+
+        // Send log to remote server
+        fetch("https://example.com/log", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                level: "WARN",
+                message: "Invalid Email Entered",
+                email: email,
+                time: new Date().toISOString()
+            })
+        });
+
+        alert("Invalid email");
+    }
+
+}
+</script>
