@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Console Methods Demo</title>
+</head>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #4e73df, #1cc88a);
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            color: white;
+        }
+
+        .container {
+            margin-top: 100px;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+        }
+
+        button {
+            padding: 12px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .log { background-color: #4e73df; color: white; }
+        .info { background-color: #36b9cc; color: white; }
+        .warn { background-color: #f6c23e; color: black; }
+        .error { background-color: #e74a3b; color: white; }
+
+        button:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+
+        .instruction {
+            margin-top: 30px;
+            font-size: 18px;
+        }
+    </style>
+<body>
+    <div class="container">
+        <h1>Javascript Console Methods Demo</h1>
+
+        <button class="log" onclick="doLog()">console.log()</button>
+        <button class="info" onclick="doInfo()">console.info()</button>
+        <button class="warn" onclick="doWarn()">console.warn()</button>
+        <button class="error" onclick="doError()">console.error()</button>
+        <button onclick="doTable()">console.table()</button>
+        <button onclick="doGroup()">console.group()</button>
+        <button onclick="doTime()">console.time()</button>
+        <button onclick="doClear()">console.clear()</button>
+
+        <p class="instruction">Open DevTools (F12) → Console tab to see the output</p>
+    </div>
+
+    <script>
+        function doLog() {
+            console.log("Hello from console.log()! 📋 This is a general log message.");
+        }
+
+        function doInfo() {
+            console.info("Hello from console.info()! ℹ️ This is an informational message.");
+        }
+
+        function doWarn() {
+            console.warn("Hello from console.warn()! ⚠️ This is a warning message.");
+        }
+
+        function doError() {
+            console.error("Hello from console.error()! ❌ This is an error message.");
+        }
+
+        function doTable() {
+            const students = [
+                { name: "Alice", age: 22, grade: "A" },
+                { name: "Bob",   age: 24, grade: "B" },
+                { name: "Carol", age: 21, grade: "A+" }
+            ];
+            console.table(students);
+        }
+
+        function doGroup() {
+            console.group("User Details");
+            console.log("Name: John Doe");
+            console.log("Role: Developer");
+            console.warn("Session expires soon!");
+            console.groupEnd();
+        }
+
+        function doTime() {
+            console.time("myTimer");
+            let sum = 0;
+            for (let i = 0; i < 1000000; i++) sum += i;
+            console.timeEnd("myTimer");
+            console.log("Sum result:", sum);
+        }
+
+        function doClear() {
+            console.clear();
+            console.log("Console cleared!");
+        }
+    </script>
+</body>
+</html>
