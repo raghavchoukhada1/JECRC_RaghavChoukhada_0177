@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Todo App</title>
+
+<style>
+
+body{
+font-family: Arial;
+background:#f4f6f9;
+padding:40px;
+transition:0.3s;
+}
+
+.dark{
+background:#1e1e1e;
+color:white;
+}
+
+.container{
+width:450px;
+margin:auto;
+background:white;
+padding:20px;
+border-radius:8px;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+.dark .container{
+background:#333;
+}
+
+h1{
+text-align:center;
+}
+
+input,select{
+padding:8px;
+margin-top:5px;
+}
+
+button{
+padding:8px 10px;
+margin-left:5px;
+cursor:pointer;
+}
+
+ul{
+list-style:none;
+padding:0;
+}
+
+li{
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin-top:10px;
+}
+
+.completed{
+text-decoration: line-through;
+color:gray;
+}
+
+.priority-low{
+color:green;
+}
+
+.priority-medium{
+color:orange;
+}
+
+.priority-high{
+color:red;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Todo App</h1>
+
+<button onclick="toggleDarkMode()">Dark Mode</button>
+
+<br><br>
+
+<input id="taskInput" placeholder="Enter task">
+
+<select id="priority">
+<option value="Low">Low</option>
+<option value="Medium">Medium</option>
+<option value="High">High</option>
+</select>
+
+<button onclick="addTodo()">Add</button>
+
+<br><br>
+
+<input id="searchInput" placeholder="Search task" onkeyup="loadTodos()">
+
+<br><br>
+
+<button onclick="setFilter('all')">All</button>
+<button onclick="setFilter('active')">Active</button>
+<button onclick="setFilter('completed')">Completed</button>
+
+<ul id="todoList"></ul>
+
+</div>
+
+<script>
+
+const apiUrl = "http://localhost:5146/api/todo"
+
+let todos = []
+let filter = "all"
+
+function toggleDarkMode(){
+document.body.classList.toggle("dark")
+}
+
+function setFilter(type){
+filter = type
+renderTodos()
+}
+
+async function loadTodos(){
+
+const res = await fetch(apiUrl)
+
+todos = await res.json()
+
+renderTodos()
+
+}
+
+function renderTodos(){
+
+const list = document.getElementById("todoList")
+
+const search = document.getElementById("searchInput").value.toLowerCase()
+
+list.innerHTML=""
+
+let filtered = todos.filter(todo => 
+todo.title.toLowerCase().includes(search)
+)
+
+if(filter === "active")
+filtered = filtered.filter(t => !t.isCompleted)
+
+if(filter === "completed")
+filtered = filtered.filter(t => t.isCompleted)
+
+filtered.forEach(todo => {
+
+const li = document.createElement("li")
+
+if(todo.isCompleted)
+li.classList.add("completed")
+
+let priorityClass=""
+
+if(todo.priority==="Low") priorityClass="priority-low"
+if(todo.priority==="Medium") priorityClass="priority-medium"
+if(todo.priority==="High") priorityClass="priority-high"
+
+li.innerHTML = `
+<input type="checkbox" ${todo.isCompleted ? "checked":""}
+onchange="toggleTodo(${todo.id},this.checked,'${todo.title}','${todo.priority}')">
+
+<span class="${priorityClass}">
+${todo.title} (${todo.priority})
+</span>
+
+<div>
+<button onclick="editTodo(${todo.id},'${todo.title}',${todo.isCompleted},'${todo.priority}')">Edit</button>
+<button onclick="deleteTodo(${todo.id})">Delete</button>
+</div>
+`
+
+list.appendChild(li)
+
+})
+
+}
+
+async function addTodo(){
+
+const title = document.getElementById("taskInput").value
+const priority = document.getElementById("priority").value
+
+if(title==="") return
+
+await fetch(apiUrl,{
+method:"POST",
+headers:{'Content-Type':'application/json'},
+body:JSON.stringify({
+title:title,
+isCompleted:false,
+priority:priority
+})
+})
+
+document.getElementById("taskInput").value=""
+
+loadTodos()
+
+}
+
+async function deleteTodo(id){
+
+await fetch(`${apiUrl}/${id}`,{
+method:"DELETE"
+})
+
+loadTodos()
+
+}
+
+async function toggleTodo(id,completed,title,priority){
+
+await fetch(`${apiUrl}/${id}`,{
+method:"PUT",
+headers:{'Content-Type':'application/json'},
+body:JSON.stringify({
+id:id,
+title:title,
+isCompleted:completed,
+priority:priority
+})
+})
+
+loadTodos()
+
+}
+
+async function editTodo(id,oldTitle,completed,priority){
+
+const newTitle = prompt("Edit task",oldTitle)
+
+if(!newTitle) return
+
+await fetch(`${apiUrl}/${id}`,{
+method:"PUT",
+headers:{'Content-Type':'application/json'},
+body:JSON.stringify({
+id:id,
+title:newTitle,
+isCompleted:completed,
+priority:priority
+})
+})
+
+loadTodos()
+
+}
+
+loadTodos()
+
+</script>
+
+</body>
+</html>
