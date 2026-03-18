@@ -1,0 +1,13 @@
+<h2>Product Order System</h2>
+<h3>Product Name: {{ productName }}</h3>
+<p>Price: ${{ price }}</p>
+<img [src]="imageUrl" width ="200">
+<br><br>
+<button (click)="incrementQty()">+</button>
+<button (click)="decrementQty()">-</button>
+<p>Quantity: {{ quantity }}</p>
+<br><br>
+<button [disabled]="!isAvailable" (click)="toggleAvailability()">
+  {{ isAvailable ? 'Place Order' : 'Out of Stock' }}</button>
+<br><br>
+
