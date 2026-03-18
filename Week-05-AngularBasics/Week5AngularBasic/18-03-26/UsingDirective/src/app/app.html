@@ -1,0 +1,36 @@
+<h2>Product Dashboard</h2>
+
+<button (click)="showProducts = !showProducts">
+  Toggle Products
+</button>
+
+<div *ngIf="showProducts">
+
+  <div *ngFor="let product of products" class="card">
+
+    <h3>{{ product.name }}</h3>
+
+    <!-- FIXED ngClass -->
+    <p [ngClass]="{
+      'high-price': product.price > 30000,
+      'low-price': product.price <= 30000
+    }">
+      Price: ${{ product.price }}
+    </p>
+
+    <!-- FIXED ngSwitch -->
+    <div [ngSwitch]="product.status">
+
+      <p *ngSwitchCase="'Available'">In Stock</p>
+
+      <p *ngSwitchCase="'Out of Stock'">Out of Stock</p>
+
+      <p *ngSwitchDefault class="limited-stock">
+        Limited Stock / Unknown
+      </p>
+
+    </div>
+
+  </div>
+
+</div>

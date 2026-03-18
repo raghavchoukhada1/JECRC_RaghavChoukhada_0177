@@ -1,0 +1,27 @@
+<h2>Student Dashboard</h2>
+
+<div *ngFor="let student of students"
+     [ngClass]="{ 'topper': student.marks >= 90 }">
+
+  <p>{{ student.name }} - {{ student.marks }}</p>
+
+  <!-- Pass/Fail -->
+  <p [ngStyle]="{
+    'color': student.marks >= 50 ? 'green' : 'red',
+    'font-weight': 'bold'
+  }">
+    {{ student.marks >= 50 ? 'Pass' : 'Fail' }}
+  </p>
+
+  <!-- Grade -->
+  <div [ngSwitch]="true">
+
+    <p *ngSwitchCase="student.marks >= 90">Grade: A+</p>
+    <p *ngSwitchCase="student.marks >= 75">Grade: A</p>
+    <p *ngSwitchCase="student.marks >= 60">Grade: B</p>
+    <p *ngSwitchCase="student.marks >= 50">Grade: C</p>
+    <p *ngSwitchDefault>Grade: F</p>
+
+  </div>
+
+</div>

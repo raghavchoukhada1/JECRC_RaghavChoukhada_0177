@@ -1,0 +1,10 @@
+<h2>Status Color Directive</h2>
+
+<ul>
+  <li *ngFor="let student of students"
+      [appStatusColor]="student.marks">
+
+    {{ student.name }} - {{ student.marks }}
+
+  </li>
+</ul>
