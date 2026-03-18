@@ -1,0 +1,30 @@
+<input id="username" placeholder="Enter Username">
+<button onclick="login()">Login</button>
+
+<script>
+function login(){
+
+    const user = document.getElementById("username").value;
+
+    // log data
+    const logData = {
+        level: "INFO",
+        message: "User Login Attempt",
+        username: user,
+        time: new Date().toISOString()
+    };
+
+    // send log to remote server
+    fetch("https://example.com/log", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(logData)
+    })
+    .then(response => response.json())
+    .then(data => console.log("Log sent:", data))
+    .catch(error => console.error("Error:", error));
+
+}
+</script>
