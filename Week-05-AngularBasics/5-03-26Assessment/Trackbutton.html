@@ -1,0 +1,28 @@
+<button onclick="trackClick('Buy Now')">Buy Now</button>
+<button onclick="trackClick('Add Wishlist')">Add Wishlist</button>
+
+<script>
+
+function trackClick(action){
+
+    const logData = {
+        level: "INFO",
+        message: "User Action",
+        action: action,
+        time: new Date().toISOString()
+    };
+
+    // Send analytics data to server
+    fetch("https://example.com/analytics", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(logData)
+    })
+    .then(res => console.log("Action tracked:", action))
+    .catch(err => console.error("Tracking failed:", err));
+
+}
+
+</script>
