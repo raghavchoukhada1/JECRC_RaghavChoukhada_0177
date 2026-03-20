@@ -1,0 +1,112 @@
+<h2>🛒 Checkout</h2>
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+
+  <!-- TEXT INPUTS -->
+  <h3>Customer Details</h3>
+
+  <input formControlName="fullName" placeholder="Full Name"><br>
+  <input formControlName="address" placeholder="Address"><br>
+  <input formControlName="email" placeholder="Email"><br>
+  <input formControlName="phone" placeholder="Phone"><br>
+  <input formControlName="zip" placeholder="ZIP Code"><br>
+
+  <hr>
+
+  <!-- RADIO -->
+  <h3>Gender</h3>
+  <label><input type="radio" value="male" formControlName="gender"> Male</label>
+  <label><input type="radio" value="female" formControlName="gender"> Female</label>
+
+  <h3>Delivery Type</h3>
+  <label><input type="radio" value="standard" formControlName="deliveryType"> Standard</label>
+  <label><input type="radio" value="express" formControlName="deliveryType"> Express</label>
+
+  <hr>
+
+  <!-- CHECKBOX -->
+  <h3>Options</h3>
+  <label>
+    <input type="checkbox" formControlName="terms"> Accept Terms
+  </label>
+
+  <label>
+    <input type="checkbox" formControlName="subscribe"> Subscribe Offers
+  </label>
+
+  <hr>
+
+  <!-- DROPDOWN -->
+  <h3>Location</h3>
+  <select formControlName="city">
+    <option value="">Select City</option>
+    <option>Delhi</option>
+    <option>Mumbai</option>
+  </select>
+
+  <select formControlName="state">
+    <option>State</option>
+    <option>UP</option>
+    <option>MH</option>
+  </select>
+
+  <select formControlName="country">
+    <option>India</option>
+  </select>
+
+  <hr>
+
+  <!-- DATE -->
+  <h3>Delivery Date</h3>
+  <input type="date" formControlName="deliveryDate">
+
+  <hr>
+
+  <!-- TEXTAREA -->
+  <h3>Instructions</h3>
+  <textarea formControlName="instructions"></textarea>
+
+  <hr>
+
+  <!-- FILE -->
+  <h3>Upload</h3>
+  <input type="file">
+
+  <hr>
+
+  <!-- DYNAMIC ADDRESSES -->
+  <h3>Multiple Addresses</h3>
+
+  <div *ngFor="let a of addresses.controls; let i=index">
+    <input [formControl]="a">
+    <button type="button" (click)="removeAddress(i)">Remove</button>
+  </div>
+
+  <button type="button" (click)="addAddress()">Add Address</button>
+
+  <hr>
+
+  <!-- PAYMENT -->
+  <h3>Payment</h3>
+
+  <label><input type="radio" value="card" formControlName="payment"> Card</label>
+  <label><input type="radio" value="upi" formControlName="payment"> UPI</label>
+  <label><input type="radio" value="cod" formControlName="payment"> COD</label>
+
+  <!-- CARD -->
+  <div *ngIf="form.value.payment === 'card'">
+    <input formControlName="cardNumber" placeholder="Card Number"><br>
+    <input formControlName="expiry" placeholder="Expiry"><br>
+    <input formControlName="cvv" placeholder="CVV"><br>
+  </div>
+
+  <!-- UPI -->
+  <div *ngIf="form.value.payment === 'upi'">
+    <input formControlName="upiId" placeholder="UPI ID">
+  </div>
+
+  <hr>
+
+  <button type="submit">Submit</button>
+
+</form>

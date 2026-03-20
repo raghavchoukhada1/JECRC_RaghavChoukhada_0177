@@ -1,0 +1,8 @@
+<h2>  Order Dashboard  </h2>
+<p><b> Order ID: {{ order.id }}     </b></p>
+<p><b> Product: {{ order.name }}     </b></p>
+<p><b> Status: {{ order.status }}     </b></p>
+<button (click)="updateOrder()"> Change Status </button>
+<button (click)="toggleChild()"> Destroy/Create child </button>
+<hr>
+<app-orderchild *ngIf="destroyChild" [orderData]="order"></app-orderchild>

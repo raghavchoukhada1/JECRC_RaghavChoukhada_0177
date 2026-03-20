@@ -1,0 +1,16 @@
+<h1>🛒 Smart E-Commerce System</h1>
+
+<hr>
+
+<!-- PRODUCT -->
+<app-product (cartChange)="updateCart($event)"></app-product>
+
+<hr>
+
+<!-- CART -->
+<app-cart [cart]="cart"></app-cart>
+
+<hr>
+
+<!-- CHECKOUT -->
+<app-checkout></app-checkout>
