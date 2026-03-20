@@ -1,0 +1,15 @@
+<h2>orderchild works!</h2>
+<div class ="card">
+  <p><b> Order ID:</b> {{ orderData.id}}</p>
+   <p><b> Product:</b> {{ orderData.name}}</p>
+    <p><b> Price:</b> ₹{{ orderData.price}}</p>
+     <p><b> Status:</b> {{ orderData.status}}</p>
+</div>
+<hr>
+<h3> LifeCycle Hooks    </h3>
+<div class = 'log box'>
+    <div *ngFor="let log of logs">
+        {{ log }}
+    </div>
+</div>
+child.htl
