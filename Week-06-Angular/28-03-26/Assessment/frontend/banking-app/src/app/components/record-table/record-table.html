@@ -1,0 +1,77 @@
+<div class="main-container">
+
+  <!-- FILTER SECTION -->
+  <div class="filter-section">
+    <input 
+      type="date" 
+      [(ngModel)]="selectedDate" 
+      (change)="onDateChange()"
+    />
+
+    <button (click)="filter()">Filter</button>
+  </div>
+  <!-- ADD TRANSACTION FORM -->
+<div class="form-box">
+
+  <input type="date" [(ngModel)]="newTransaction.date" placeholder="Date" />
+
+  <input type="text" [(ngModel)]="newTransaction.description" placeholder="Description" />
+
+  <select [(ngModel)]="newTransaction.type">
+    <option [value]="0">Credit</option>
+    <option [value]="1">Debit</option>
+  </select>
+
+  <input type="number" [(ngModel)]="newTransaction.amount" placeholder="Amount" />
+
+  <input type="text" [(ngModel)]="newTransaction.balance" placeholder="Balance ($)" />
+
+  <button (click)="addTransaction()">Add</button>
+
+</div>
+
+  <!-- TABLE -->
+  <div class="table-container">
+    <table>
+      
+      <!-- HEADER -->
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Description</th>
+          <th>Type</th>
+          <th class="clickable" (click)="sort()">
+            Amount ($)
+          </th>
+          <th>Available Balance</th>
+        </tr>
+      </thead>
+
+      <!-- BODY -->
+      <tbody>
+
+        <!-- DATA ROWS -->
+        <tr *ngFor="let t of transactions">
+          <td>{{ t.date }}</td>
+          <td>{{ t.description }}</td>
+          <td>
+            <span [ngClass]="t.type === 0 ? 'credit' : 'debit'">
+              {{ t.type === 0 ? 'Credit' : 'Debit' }}
+            </span>
+          </td>
+          <td>{{ t.amount }}</td>
+          <td>{{ t.balance }}</td>
+        </tr>
+
+        <!-- NO DATA -->
+        <tr *ngIf="transactions.length === 0">
+          <td colspan="5" class="no-data">
+            No records found
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+</div>
