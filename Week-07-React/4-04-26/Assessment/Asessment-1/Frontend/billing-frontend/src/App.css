@@ -1,0 +1,13 @@
+.container {
+  padding: 20px;
+  font-family: Arial;
+}
+
+button {
+  margin: 5px;
+  padding: 8px;
+}
+
+input {
+  margin: 5px;
+}
