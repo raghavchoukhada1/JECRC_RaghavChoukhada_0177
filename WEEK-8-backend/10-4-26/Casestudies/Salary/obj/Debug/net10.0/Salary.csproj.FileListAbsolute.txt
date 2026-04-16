@@ -1,9 +1,0 @@
-C:\capgeminiTraining\Capgemini Training\WEEK-8-backend\10-4-26\Casestudies\Salary\obj\Debug\net10.0\Salary.csproj.AssemblyReference.cache
-C:\capgeminiTraining\Capgemini Training\WEEK-8-backend\10-4-26\Casestudies\Salary\obj\Debug\net10.0\rpswa.dswa.cache.json
-C:\capgeminiTraining\Capgemini Training\WEEK-8-backend\10-4-26\Casestudies\Salary\obj\Debug\net10.0\Salary.GeneratedMSBuildEditorConfig.editorconfig
-C:\capgeminiTraining\Capgemini Training\WEEK-8-backend\10-4-26\Casestudies\Salary\obj\Debug\net10.0\Salary.AssemblyInfoInputs.cache
-C:\capgeminiTraining\Capgemini Training\WEEK-8-backend\10-4-26\Casestudies\Salary\obj\Debug\net10.0\Salary.AssemblyInfo.cs
-C:\capgeminiTraining\Capgemini Training\WEEK-8-backend\10-4-26\Casestudies\Salary\obj\Debug\net10.0\Salary.csproj.CoreCompileInputs.cache
-C:\capgeminiTraining\Capgemini Training\WEEK-8-backend\10-4-26\Casestudies\Salary\obj\Debug\net10.0\Salary.MvcApplicationPartsAssemblyInfo.cs
-C:\capgeminiTraining\Capgemini Training\WEEK-8-backend\10-4-26\Casestudies\Salary\obj\Debug\net10.0\Salary.MvcApplicationPartsAssemblyInfo.cache
-C:\capgeminiTraining\Capgemini Training\WEEK-8-backend\10-4-26\Casestudies\Salary\obj\Debug\net10.0\Salary.sourcelink.json
