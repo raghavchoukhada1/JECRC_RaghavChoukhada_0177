@@ -1,0 +1,6 @@
+@EMSInMemory_HostAddress = http://localhost:5142
+
+GET {{EMSInMemory_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

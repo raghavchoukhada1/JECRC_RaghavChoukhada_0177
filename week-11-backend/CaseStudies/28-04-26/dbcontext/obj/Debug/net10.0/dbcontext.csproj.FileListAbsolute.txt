@@ -1,0 +1,5 @@
+C:\capgeminiTraining\Capgemini Training\week-10-backend\CaseStudies\28-04-26\dbcontext\obj\Debug\net10.0\dbcontext.GeneratedMSBuildEditorConfig.editorconfig
+C:\capgeminiTraining\Capgemini Training\week-10-backend\CaseStudies\28-04-26\dbcontext\obj\Debug\net10.0\dbcontext.AssemblyInfoInputs.cache
+C:\capgeminiTraining\Capgemini Training\week-10-backend\CaseStudies\28-04-26\dbcontext\obj\Debug\net10.0\dbcontext.AssemblyInfo.cs
+C:\capgeminiTraining\Capgemini Training\week-10-backend\CaseStudies\28-04-26\dbcontext\obj\Debug\net10.0\dbcontext.csproj.CoreCompileInputs.cache
+C:\capgeminiTraining\Capgemini Training\week-10-backend\CaseStudies\28-04-26\dbcontext\obj\Debug\net10.0\dbcontext.sourcelink.json
